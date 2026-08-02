@@ -61,7 +61,6 @@ function App() {
                     color: '#6b7280',
                   }}
                 >
-                  <span>{formatDate(post.createdAt)}</span>
                   <div style={{ display: 'flex', gap: '6px' }}>
                     {post.categories.map((category, index) => (
                       <span
@@ -74,7 +73,7 @@ function App() {
                           backgroundColor:'#e5e7eb',
                         }}
                       >
-                        {category}
+                        {category}あああ
                       </span>
                     ))}
                   </div>

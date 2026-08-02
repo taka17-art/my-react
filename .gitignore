@@ -23,4 +23,3 @@ dist-ssr
 *.sln
 *.sw?
 App.css
-git rm --cached App.css

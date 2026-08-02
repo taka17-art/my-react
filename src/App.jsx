@@ -73,7 +73,7 @@ function App() {
                           backgroundColor:'#e5e7eb',
                         }}
                       >
-                        {category}あああ
+                        {category}
                       </span>
                     ))}
                   </div>

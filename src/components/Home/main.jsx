@@ -11,8 +11,12 @@ export const Home = () => {
       <ul className={classes.container}>
         {posts.map((post) => {
           return (
-            <li key={post.id} className={classes.list}>
-              <a href={post.thumbnailUrl} className={classes.link}>
+           <li key={post.id} className={classes.list}>
+            {/* href には記事詳細ページのURLを指定 */}
+            <a href={`/posts/${post.id}`} className={classes.link}>
+            {/* サムネイル画像は img タグで表示 */}
+             <img src={post.thumbnailUrl} alt={post.title} />
+              <span>{post.title}</span>
                 <div className={classes.post}>
                   <div className={classes.postContent}>
                     <div className={classes.postInfo}>

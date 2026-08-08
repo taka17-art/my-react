@@ -1,6 +1,7 @@
 import React from "react";
 import { posts } from "../../data/posts";
 import classes from "./Home.module.css";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   

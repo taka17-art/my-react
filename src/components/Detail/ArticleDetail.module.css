@@ -4,36 +4,36 @@
 }
 
 .post {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
 }
 
 .postImage img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .postContent {
-    padding: 0rem;
+  padding: 0rem;
 }
 
 .postInfo {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin: 10px auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 10px auto;
 }
 
 .postDate {
-    font-size: 1rem;
-    color: #100f0f;
+  font-size: 1rem;
+  color: #100f0f;
 }
 
 .postCategories {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .postCategory {
@@ -46,35 +46,35 @@
 }
 
 .postTitle {
-    font-size: 1.7rem;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
+  font-size: 1.7rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
 }
 
 .postBody {
-    font-size: 1rem;
-    line-height: 1.8;
+  font-size: 1rem;
+  line-height: 1.8;
 }
 
 .postError {
-    margin: 2rem auto;
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
+  margin: 2rem auto;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .backLinkContainer {
-  margin-top: 2.5rem; 
+  margin-top: 2.5rem;
   margin-bottom: 2rem;
 }
 
 .backLink {
-  color: #2563eb;         
-  text-decoration: none;   
-  font-weight: bold;      
-  font-size: 1rem;    
-  display: inline-block;   
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  display: inline-block;
   transition: opacity 0.2s;
 }
 

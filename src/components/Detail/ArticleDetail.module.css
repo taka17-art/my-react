@@ -82,3 +82,10 @@
   opacity: 0.8;
   text-decoration: underline;
 }
+
+.postLoading {
+  margin: 2rem auto;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}

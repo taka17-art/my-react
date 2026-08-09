@@ -1,12 +1,43 @@
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import classes from "./ArticleDetail.module.css";
-import { posts } from "../../data/posts";
 
 export const Detail = () => {
   const { id } = useParams();
-  const post = posts.find((post) => post.id === Number(id));
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  if (!post) return <div>記事が見つかりませんでした。</div>;
+  useEffect(() => {
+    const fetcher = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(
+          `https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts/${id}`
+        );
+        const data = await res.json();
+
+        setPost(data.post);
+      } catch (error) {
+        console.error("データの取得に失敗しました:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetcher();
+    }
+  }, [id]);
+
+  if (loading) {
+    return <div className={classes.postLoading}>読み込み中...</div>;
+  }
+
+  if (!post) {
+    return (
+      <div className={classes.postError}>記事が見つかりませんでした。</div>
+    );
+  }
 
   return (
     <div className={classes.container}>
@@ -20,13 +51,12 @@ export const Detail = () => {
               {new Date(post.createdAt).toLocaleDateString()}
             </div>
             <div className={classes.postCategories}>
-              {post.categories.map((category, index) => {
-                return (
-                  <p key={index} className={classes.postCategory}>
-                    {category}
-                  </p>
-                );
-              })}
+              {post.categories?.map((category, index) => (
+                <p key={index} className={classes.postCategory}>
+                  {category}
+                </p>
+              ))}
+
             </div>
           </div>
           <h1 className={classes.postTitle}>{post.title}</h1>

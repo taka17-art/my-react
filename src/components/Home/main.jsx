@@ -1,12 +1,41 @@
-import React from "react";
-import { posts } from "../../data/posts";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import classes from "./Home.module.css";
 import { Link } from "react-router-dom";
 
 export const Home = () => {
-  
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetcher = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(
+          "https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts"
+        );
+        const data = await res.json();
+
+        setPosts(data.posts);
+      } catch (error) {
+        console.error("記事一覧の取得に失敗しました:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetcher();
+  }, []);
+
+  if (loading) {
+    return <div className={classes.postLoading}>読み込み中...</div>;
+  }
+
+  if (!posts || posts.length === 0) {
+    return <div>記事が見つかりませんでした。</div>;
+  }
+
   const formatDate = (dateString) => {
-  　if (!dateString) return "";
+    if (!dateString) return "";
     const parts = dateString.split(/[-/T]/);
     if (parts.length >= 3) {
       const year = parts[0];
@@ -26,44 +55,38 @@ export const Home = () => {
       <main className={classes.container}>
         <h2 className={classes.title}>記事一覧</h2>
         <ul className={classes.list}>
-          {posts.map((post) => {
-            return (
-              <li key={post.id}>
-
-                <a href={`/posts/${post.id}`} className={classes.link}>
-                  <div className={classes.post}>                  
-                    <div className={classes.postImage}>
-                      <img src={post.thumbnailUrl} alt={post.title} />
-                    </div>
-                    <div className={classes.postContent}>
-                      <div className={classes.postInfo}>
-                        <div className={classes.postDate}>
-                          {formatDate(post.createdAt)}
-                        </div>
-                        <div className={classes.postCategories}>
-                          {post.categories.map((category, id) => {
-                            return (
-                              <p key={id} className={classes.postCategory}>
-                                {category}
-                              </p>
-                            );
-                          })}
-                        </div>
-                      </div>
-                      
-                      <p className={classes.postTitle}>{post.title}</p>
-                      
-                      <div
-                        className={classes.postBody}
-                        dangerouslySetInnerHTML={{ __html: post.content }}
-                      />
-                    </div>
-
+          {posts.map((post) => (
+            <li key={post.id}>
+              <Link to={`/posts/${post.id}`} className={classes.link}>
+                <div className={classes.post}>
+                  <div className={classes.postImage}>
+                    <img src={post.thumbnailUrl} alt={post.title} />
                   </div>
-                </a>
-              </li>
-            );
-          })}
+                  <div className={classes.postContent}>
+                    <div className={classes.postInfo}>
+                      <div className={classes.postDate}>
+                        {formatDate(post.createdAt)}
+                      </div>
+                      <div className={classes.postCategories}>
+                        {post.categories?.map((category, index) => (
+                          <p key={index} className={classes.postCategory}>
+                            {category}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+
+                    <p className={classes.postTitle}>{post.title}</p>
+
+                    <div
+                      className={classes.postBody}
+                      dangerouslySetInnerHTML={{ __html: post.content }}
+                    />
+                  </div>
+                </div>
+              </Link>
+            </li>
+          ))}
         </ul>
       </main>
     </div>

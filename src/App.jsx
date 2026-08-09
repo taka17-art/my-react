@@ -1,7 +1,7 @@
+import { Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header/main";
 import { Home } from "./components/Home/main";
-import { Routes, Route } from "react-router-dom";
-import { Detail as ArticleDetail } from "./components/Detail/main";
+import { Detail } from "./components/Detail/main";
 
 export const App = () => {
   return (
@@ -9,9 +9,10 @@ export const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/posts/:id" element={<ArticleDetail />} />
+        <Route path="/posts/:id" element={<Detail />} />
       </Routes>
-    </div>
+    </>
+
   );
 };
 

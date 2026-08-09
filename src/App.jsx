@@ -5,13 +5,14 @@ import { Detail } from "./components/Detail/main";
 
 export const App = () => {
   return (
-    <>
+    <div>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/posts/:id" element={<Detail />} />
       </Routes>
     </>
+
   );
 };
 

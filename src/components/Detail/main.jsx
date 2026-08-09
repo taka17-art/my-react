@@ -56,6 +56,7 @@ export const Detail = () => {
                   {category}
                 </p>
               ))}
+
             </div>
           </div>
           <h1 className={classes.postTitle}>{post.title}</h1>
